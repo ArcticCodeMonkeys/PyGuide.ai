@@ -11,7 +11,7 @@ const Question = ({ questionId }) => {
 
     const fetchDefinitions = async () => {
       try {
-        const response = await fetch(require('./data/definitions.json')); // Load the JSON file
+        const response = await fetch('https://raw.githubusercontent.com/ArcticCodeMonkeys/python-app/main/dictionary/dictionary.json'); // Load the JSON file
         const data = await response.json();
         if (isMounted) {
           // Convert array to a dictionary for quick lookup
@@ -20,6 +20,7 @@ const Question = ({ questionId }) => {
             return acc;
           }, {});
           setWordDefinitions(definitions); // Set definitions in state
+          console.log(definitions);
         }
       } catch (error) {
         console.error("Error fetching definitions:", error);
