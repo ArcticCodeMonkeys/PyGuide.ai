@@ -5,7 +5,7 @@ import Question from "@/components/Question";
 
 // Main component for the game
 const HomePage = () => {
-  const [question, setQuestion] = useState("question1");  // Set the default question ID
+  const [question, setQuestion] = useState("question2");  // Set the default question ID
 
   return (
     <View style={styles.container}>
