@@ -1,6 +1,6 @@
 {
-  "title": "Two Sum",
-  "description": "Given an array of integers, return the indices of the two numbers that add up to a specific target.",
+  "title": "Test Dictionary",
+  "description": "Given an array of integers, create a functions which uses an O(n) algorithm to sort the numbers, and save the smallest in a variable named Minimum",
   "constraints": "Each input would have exactly one solution.",
-  "examples": "Input: nums = [2, 7, 11, 15], target = 9. Output: [0, 1]"
+  "examples": "Input: nums = [2, 7, 11, 15], Output: 2"
 }

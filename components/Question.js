@@ -12,8 +12,14 @@ const Question = ({ questionId }) => {
     const fetchDefinitions = async () => {
       try {
         const response = await fetch('https://raw.githubusercontent.com/ArcticCodeMonkeys/python-app/main/dictionary/dictionary.json'); // Load the JSON file
-        const data = await response.json();
-        if (isMounted) {
+
+        // Log the raw response to see if it's valid JSON
+        const rawData = await response.text();
+        console.log("Raw Data:", rawData);
+
+        // Parse the response as JSON
+        const data = JSON.parse(rawData); // Use JSON.parse to catch any issues with the structure
+        if (data) {
           // Convert array to a dictionary for quick lookup
           const definitions = data.reduce((acc, curr) => {
             acc[curr.word.toLowerCase()] = curr.definition;
