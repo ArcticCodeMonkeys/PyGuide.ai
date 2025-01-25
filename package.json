@@ -21,6 +21,7 @@
     "@react-navigation/native": "^7.0.14",
     "@uidotdev/usehooks": "^2.4.1",
     "axios": "^1.7.9",
+    "dotenv": "^16.4.7",
     "expo": "~52.0.23",
     "expo-blur": "~14.0.1",
     "expo-constants": "~17.0.3",
