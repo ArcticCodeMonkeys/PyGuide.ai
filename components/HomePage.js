@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
 import { Image, Pressable, StyleSheet, Text, View, TextInput } from "react-native";
-import Card from './Card'; // Custom Card component for rendering playing cards
+import IDE from "@/components/IDE";
 
 
 // Main component for the game
 const HomePage = () => {
 
   useEffect(() => {
-
   }, []);
 
   return (
     <View style={styles.container}>
+      <IDE/>
     </View>
   );
 };
