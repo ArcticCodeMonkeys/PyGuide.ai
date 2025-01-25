@@ -1,6 +1,7 @@
 {
-  "title": "Test Dictionary",
-  "description": "Given an array of integers, create a function which uses an O(n) algorithm to sort the numbers, and save the smallest in a variable named Minimum",
-  "constraints": "Each input would have exactly one solution.",
-  "examples": "Input: nums = [2, 7, 11, 15], Output: 2"
+  "title": "Simple Addition",
+  "description": "Create a Python function that adds two numbers, and returns the result.",
+  "constraints": "None.",
+  "examples": "Input: 5, 3. \nOutput: 8",
+  "code": "class Solution:\n    def simpleAddition(self) -> int:\n        # your implementation here"
 }

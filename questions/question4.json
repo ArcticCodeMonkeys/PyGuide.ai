@@ -1,0 +1,8 @@
+{
+    "title": "Even or Odd",
+    "description": "Write a function that checks if the number is even or odd and returns the result.",
+    "constraints": "None.",
+    "examples": "Output: 'Even'",
+    "code": "class Solution:\n    def evenOrOdd(self) -> str:\n       # your implementation here"
+  }
+  
