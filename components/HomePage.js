@@ -1,17 +1,24 @@
-import { useState, useEffect } from "react";
-import { Image, Pressable, StyleSheet, Text, View, TextInput } from "react-native";
+import { useState } from "react";
+import { StyleSheet, View } from "react-native";
 import IDE from "@/components/IDE";
-
+import Question from "@/components/Question";
 
 // Main component for the game
 const HomePage = () => {
-
-  useEffect(() => {
-  }, []);
+  const [question, setQuestion] = useState("question1");  // Set the default question ID
 
   return (
     <View style={styles.container}>
-      <IDE/>
+      <View style={styles.programmingContainer}>
+      <View style={styles.leftContainer}>
+        {/* Display the Question component */}
+        <Question questionId={question} />
+      </View>
+
+      <View style={styles.rightContainer}>
+        <IDE />
+      </View>
+      </View>
     </View>
   );
 };
@@ -22,155 +29,24 @@ const styles = StyleSheet.create({
   // Main Container
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection: "row", // Layout children side by side
+    justifyContent: "center",
+    alignItems: "flex-start", // Align to the top
   },
-  // Container for the PLayer's Hand
-  playerHandContainer: {
-    position: 'absolute',
-    bottom: 225,
-    flexDirection: 'row',
-    justifyContent: 'center',
+  programmingContainer: {
+    flex: 1,
+    flexDirection: "row", // Layout children side by side
+    justifyContent: "center",
+    alignItems: "flex-start", // Align to the top
+    marginTop: 50
   },
-  // Container for the Dealer's Hand
-  dealerHandContainer: {
-    position: 'absolute',
-    top: 50,
-    flexDirection: 'row',
-    justifyContent: 'center',
+  leftContainer: {
+    flex: 1, // 1/3 of the width
+    padding: 20,
+    justifyContent: "flex-start", // Align the Question component at the top
   },
-  // Hit Button
-  hitButton: {
-    position: 'absolute',
-    bottom: 75,
-    left: 20,
-    padding: 15,
-    borderWidth: 2,
-    borderColor: 'black',
-    borderRadius: 8,
-    width: 200,
-    height: 120,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'red',
-  },
-  // Stand Button
-  standButton: {
-    position: 'absolute',
-    bottom: 75,
-    right: 20,
-    padding: 15,
-    borderWidth: 2,
-    borderColor: 'black',
-    borderRadius: 8,
-    width: 200,
-    height: 120,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'green',
-  },
-  // Disabled Button
-  disabledButton: {
-    backgroundColor: 'gray',
-  },
-  // Button Text
-  buttonText: {
-    color: 'black',
-    fontSize: 22,
-  },
-  // Player's Score
-  playerScore: {
-    position: 'absolute',
-    top: 30,
-    left: 20,
-    color: 'black',
-    fontSize: 32,
-  },
-  // Dealer's Score
-  dealerScore: {
-    position: 'absolute',
-    top: 30,
-    right: 20,
-    color: 'black',
-    fontSize: 32,
-  },
-  // Display Message
-  message: {
-    position: 'absolute',
-    top: 200,
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: 'blue',
-  },
-  // Betting Input Container
-  betContainer: {
-    position: 'absolute',
-    bottom: 65,
-    alignItems: 'center',
-  },
-  // Balance Text
-  moneyText: {
-    fontSize: 24,
-    marginBottom: 10,
-  },
-  // Bet Text Field
-  betInput: {
-    width: 250,
-    height: 40,
-    borderColor: 'black',
-    borderWidth: 1,
-    marginBottom: 10,
-    textAlign: 'center',
-    fontSize: 18,
-  },
-  // Bet Button
-  betButton: {
-    padding: 10,
-    backgroundColor: 'blue',
-    borderRadius: 8,
-  },
-  // Disabled Bet Button
-  disabledBet: {
-    padding: 10,
-    backgroundColor: 'grey',
-    borderRadius: 8,
-  },
-  splitConfirm: {
-    position: 'absolute',
-    bottom: 75,
-    left: 20,
-    padding: 15,
-    borderWidth: 2,
-    borderColor: 'black',
-    borderRadius: 8,
-    width: 200,
-    height: 120,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'yellow',
-  },
-  splitDeny: {
-    position: 'absolute',
-    bottom: 75,
-    right: 20,
-    padding: 15,
-    borderWidth: 2,
-    borderColor: 'black',
-    borderRadius: 8,
-    width: 200,
-    height: 120,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'yellow',
-  },
-  playAgainButton: {
-    position: 'absolute',
-    top: 275,
-    width: 200,
-    height: 120,
-    borderRadius: 8,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'green',
+  rightContainer: {
+    flex: 2, // 2/3 of the width
+    padding: 20,
   },
 });

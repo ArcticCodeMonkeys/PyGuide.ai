@@ -82,17 +82,17 @@ const IDE = () => {
             },
           }}
         />
-      </div>
+
 
       {/* Input/output section for user input and results */}
       <div style={styles.inputOutputContainer}>
-    <textarea
-      placeholder="Enter input here"
-      value={input}
-      onChange={(e) => setInput(e.target.value)}
-      rows="5"
-      style={styles.input}
-    />
+        <textarea
+          placeholder="Enter input here"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          rows="5"
+          style={styles.input}
+        />
         <button onClick={handleRun} disabled={loading} style={styles.runButton}>
           {loading ? "Running..." : "Run Code"}
         </button>
@@ -102,39 +102,31 @@ const IDE = () => {
           {output}
         </div>
       </div>
+      </div>
     </div>
   );
 };
 
 const styles = {
   page: {
-    display: 'block', // Remove flexbox layout from the page container
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100vh',
-    padding: '20px',
-    width: '100%', // Ensure the width is properly set
+    display: 'flex', // Use flexbox for layout
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    height: '100%',
+    flexDirection: 'row', // Set the flex direction to row for left-right layout
+    width: '100%', // Ensure full width
   },
   ideContainer: {
-    width: 'calc(100% - 650px)', // Ensure the editor container takes up full width
-    height: 'calc(100vh - 400px)', // Adjust height to leave space for input/output
-    marginBottom: '20px',
-    marginTop: '20px',
-    marginLeft: '400px', // Left margin to position the editor
-    marginRight: '200px', // Right margin
-    paddingRight: '200px',
-    paddingLeft: '200px',
-    position: 'relative', // Ensure the Monaco Editor is positioned properly
+    flex: 1, // This ensures the IDE takes up 2/3 of the space
+    height: '50vh', // Ensure the editor takes up the full height of the screen
+    flexDirection: 'column',
   },
   inputOutputContainer: {
-    marginLeft: '500px', // Align input/output section with the editor
-    marginRight: '175px', // Align input/output section with the editor
-    marginTop: '20px',
-    paddingRight: '0px',
-    paddingLeft: '200px',
+    flex: 1, // This ensures the input/output section takes up 1/3 of the space
     display: 'flex',
     flexDirection: 'column',
-    gap: '10px'
+    gap: '10px',
+    padding: '10px',
   },
   input: {
     width: '100%',
@@ -150,7 +142,6 @@ const styles = {
     border: 'none',
     borderRadius: '4px',
     cursor: 'pointer',
-    marginLeft: '25px',
   },
   output: {
     whiteSpace: 'pre-wrap', // Ensure text wraps if it's too long
@@ -161,8 +152,6 @@ const styles = {
     maxHeight: '125px', // Set max height to limit the output area size
     overflowY: 'auto', // Enable scrolling for long content
     border: '1px solid #ccc', // Optional: Add a border for a clean look
-    marginTop: '10px', // Ensure spacing from the button and input
-    marginLeft: '25px',
   },
 };
 
