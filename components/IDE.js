@@ -68,37 +68,102 @@ const IDE = () => {
   };
 
   return (
-    <View>
-      <h2>Judge0 IDE</h2>
+    <div style={styles.page}>
+      {/* IDE section taking up 2/3 of the screen */}
+      <div style={styles.ideContainer}>
+        <Editor
+          height="100%" // Ensure the editor takes up full height of the container
+          defaultLanguage="python"
+          value={code}
+          onChange={(value) => setCode(value)}
+          options={{
+            minimap: {
+              enabled: false, // Disable the minimap
+            },
+          }}
+        />
+      </div>
 
-      {/* Monaco Editor for code input */}
-      <Editor
-        height="40vh"
-        defaultLanguage="python"
-        value={code}
-        onChange={(value) => setCode(value)}
-      />
+      {/* Input/output section for user input and results */}
+      <div style={styles.inputOutputContainer}>
+    <textarea
+      placeholder="Enter input here"
+      value={input}
+      onChange={(e) => setInput(e.target.value)}
+      rows="5"
+      style={styles.input}
+    />
+        <button onClick={handleRun} disabled={loading} style={styles.runButton}>
+          {loading ? "Running..." : "Run Code"}
+        </button>
 
-      {/* Command-line input for user input */}
-      <LabeledInputField>
-        placeholder="Enter input here"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        rows="5"
-        style={{ width: "100%", marginTop: "10px" }}
-      />
-
-      {/* Button to run code */}
-      <button onClick={handleRun} disabled={loading} style={{ marginTop: "10px" }}>
-        {loading ? "Running..." : "Run Code"}
-      </button>
-
-      {/* Output display */}
-      <pre style={{ marginTop: "20px", whiteSpace: "pre-wrap", wordWrap: "break-word" }}>
-        {output}
-      </pre>
-    </View>
+        {/* Scrollable output area */}
+        <div style={styles.output}>
+          {output}
+        </div>
+      </div>
+    </div>
   );
+};
+
+const styles = {
+  page: {
+    display: 'block', // Remove flexbox layout from the page container
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh',
+    padding: '20px',
+    width: '100%', // Ensure the width is properly set
+  },
+  ideContainer: {
+    width: 'calc(100% - 650px)', // Ensure the editor container takes up full width
+    height: 'calc(100vh - 400px)', // Adjust height to leave space for input/output
+    marginBottom: '20px',
+    marginTop: '20px',
+    marginLeft: '400px', // Left margin to position the editor
+    marginRight: '200px', // Right margin
+    paddingRight: '200px',
+    paddingLeft: '200px',
+    position: 'relative', // Ensure the Monaco Editor is positioned properly
+  },
+  inputOutputContainer: {
+    marginLeft: '500px', // Align input/output section with the editor
+    marginRight: '175px', // Align input/output section with the editor
+    marginTop: '20px',
+    paddingRight: '0px',
+    paddingLeft: '200px',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '10px'
+  },
+  input: {
+    width: '100%',
+    padding: '10px',
+    fontSize: '16px',
+    borderRadius: '4px',
+  },
+  runButton: {
+    padding: '10px',
+    fontSize: '16px',
+    backgroundColor: '#4CAF50',
+    color: 'white',
+    border: 'none',
+    borderRadius: '4px',
+    cursor: 'pointer',
+    marginLeft: '25px',
+  },
+  output: {
+    whiteSpace: 'pre-wrap', // Ensure text wraps if it's too long
+    backgroundColor: '#f4f4f4',
+    padding: '10px',
+    borderRadius: '4px',
+    fontSize: '16px',
+    maxHeight: '125px', // Set max height to limit the output area size
+    overflowY: 'auto', // Enable scrolling for long content
+    border: '1px solid #ccc', // Optional: Add a border for a clean look
+    marginTop: '10px', // Ensure spacing from the button and input
+    marginLeft: '25px',
+  },
 };
 
 export default IDE;
