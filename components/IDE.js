@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import { Editor } from "@monaco-editor/react";
 import axios from "axios";
 import {User, Star, SquareArrowUp, LoaderCircle, CircleArrowRight, Circle} from "lucide-react";
@@ -15,7 +15,24 @@ const IDE = ({onCodeContent}) => {
   const [showPopup, setShowPopup] = useState(false); // State for showing popup
   const [levelUp, setLevelUp] = useState(true); // New state for level-up popup
   const [showSecondPopup, setShowSecondPopup] = useState(false);
+  const [gooseImage, setGooseImage] = useState(null);
 
+  const fetchImages = async () => {
+    try {
+      const response = await fetch('https://github.com/ArcticCodeMonkeys/python-app/raw/main/assets/PyGuides/goose_image.png');
+      const imageBlob = await response.blob();
+      const imageUrl = URL.createObjectURL(imageBlob); // Create an object URL from the blob
+      console.log('Carter', imageUrl);
+      setGooseImage(imageUrl); // Save the image URL in the state
+    } catch (error) {
+      console.error("Error fetching image:", error);
+    }
+  };
+  
+  useEffect(() => {
+    fetchImages(); // Call this function to load the image when the component mounts
+  }, []);
+  
 
   // Handle code execution
   const handleRun = async () => {
@@ -142,22 +159,25 @@ const IDE = ({onCodeContent}) => {
 
       {/* Second Popup */}
       {showSecondPopup && (
-                  <div style={styles.levelUpPopup}>
-                  <div style={styles.levelUpContent}>
-                    <h2 style={styles.SecondPopupText}> New PyGuide Unlocked!</h2>
-                    
-                    <img src="../assets/PyGuides/goose-image.png" alt="Custom Image" />
-                    </div>
-                    <CircleArrowRight
-            size={40} // Set the size of the icon
-            color="#4CAF50" // Choose the color of the icon
-            style={styles.levelUpCloseIcon} // Apply styling for the icon
-            onClick={() => {
-              setShowSecondPopup(false); // Open the second popup
-            }}
-          />
-          </div>
-      )}
+  <div style={styles.levelUpPopup}>
+    <div style={styles.levelUpContent}>
+      <h2 style={styles.SecondPopupText}>New PyGuide Unlocked!</h2>
+      
+      {/* Render the goose image if it's available */}
+      {gooseImage && <img src={gooseImage} alt="Goose" style={styles.gooseImage} />}
+    </div>
+    <CircleArrowRight
+      size={40}
+      color="#4CAF50"
+      style={styles.levelUpCloseIcon}
+      onClick={() => {
+        setShowSecondPopup(false);
+      }}
+    />
+  </div>
+)}
+
+  
 
       {/* IDE section taking up 2/3 of the screen */}
       <div style={styles.ideContainer}>
@@ -201,6 +221,12 @@ const IDE = ({onCodeContent}) => {
 };
 
 const styles = {
+  gooseImage: {
+    width: "100%", // Make it responsive or set a specific width
+    height: "auto", // Maintain aspect ratio
+    marginTop: "20px", // Add some space above the image
+  },
+  
   page: {
     display: 'flex', // Use flexbox for layout
     justifyContent: 'flex-start',
