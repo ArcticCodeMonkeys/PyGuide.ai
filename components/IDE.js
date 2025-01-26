@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, {useEffect, useRef, useState} from "react";
 import { Editor } from "@monaco-editor/react";
 import axios from "axios";
 import { Menu, User, Star, SquareArrowUp, LoaderCircle, CircleArrowRight, Circle} from "lucide-react";
 
-const IDE = ({onCodeContent}) => {
+const IDE = ({onCodeContent, questionContent}) => {
   // State variables
-  const [code, setCode] = useState("# Write your Python code here");
+
+  const [code, setCode] = useState("");
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [languageId, setLanguageId] = useState(71); // Python 3 language ID
@@ -13,6 +14,16 @@ const IDE = ({onCodeContent}) => {
   const [showPopup, setShowPopup] = useState(false); // State for showing popup
   const [levelUp, setLevelUp] = useState(true); // New state for level-up popup
   const [showSecondPopup, setShowSecondPopup] = useState(false);
+  const isInitialRender = useRef(true); // Ref to track initial render
+
+  useEffect(() => {
+    // Only update the code state on the first render or if explicitly required
+    if (isInitialRender.current) {
+      isInitialRender.current = false;
+    } else if (questionContent.code !== code) {
+      setCode(questionContent.code || "");
+    }
+  }, [questionContent.code]);
 
 
   // Handle code execution
@@ -79,7 +90,7 @@ const IDE = ({onCodeContent}) => {
       <button style={styles.iconButton}>
       <Menu size={24} />
         </button>
-        <h1 style={styles.title}>Python App</h1>
+        <h1 style={styles.title}>PyGuide.ai</h1>
         <div style={{ position: "relative" }}>
         <button style={styles.iconButton} onClick={() => {setShowPopup(true)}}>
         <User size={24} />
@@ -152,7 +163,6 @@ const IDE = ({onCodeContent}) => {
             },
           }}
         />
-{/*Might need a div here*/}
 
       {/* Input/output section for user input and results */}
       <div style={styles.inputOutputContainer}>

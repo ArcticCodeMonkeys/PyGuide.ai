@@ -26,7 +26,7 @@ const HomePage = ({question, onBack}) => {
             <ChatComponent question={questionData} code={codeContent}/>
           </View>
           <View style={styles.rightContainer}>
-            <IDE onCodeContent={handleCodeContent}/>
+            <IDE onCodeContent={handleCodeContent} questionContent={questionData || ''}/>
           </View>
         </View>
   );
