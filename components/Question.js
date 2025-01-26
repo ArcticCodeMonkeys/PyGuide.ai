@@ -46,7 +46,10 @@ const Question = ({ questionId }) => {
 
     const fetchQuestion = async () => {
       try {
-        const response = await fetch(`https://raw.githubusercontent.com/ArcticCodeMonkeys/python-app/main/questions/${questionId}.json`);
+        console.log('Carter', questionId);
+        const url = `https://raw.githubusercontent.com/ArcticCodeMonkeys/python-app/main/questions/${questionId}.json`;
+        console.log(url);
+        const response = await fetch(url);
         const data = await response.json();
         if (isMounted) {
           setQuestionData(data); // Only update if the component is still mounted

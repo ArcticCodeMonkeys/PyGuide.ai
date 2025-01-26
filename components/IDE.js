@@ -15,6 +15,8 @@ const IDE = () => {
     setLoading(true);
     setOutput(""); // Reset output
 
+    //
+
     try {
       // Send code to Judge0 API
       const submissionResponse = await axios.post(
