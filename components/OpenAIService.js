@@ -75,7 +75,8 @@ const styles = StyleSheet.create({
     },
     responseContainer: {
         marginTop: 16,
-        width: '100%',
+        alignSelf: 'flex-end',
+        width: '80%',
         height: 200,
         borderColor: 'gray',
         borderWidth: 1,

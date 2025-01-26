@@ -19,7 +19,7 @@ const IDE = ({onCodeContent}) => {
 
   const fetchImages = async () => {
     try {
-      const response = await fetch('https://github.com/ArcticCodeMonkeys/python-app/raw/main/assets/PyGuides/goose_image.png');
+      const response = await fetch('https://raw.githubusercontent.com/ArcticCodeMonkeys/python-app/main/assets/PyGuides/goose-image-removebg-preview.png');
       const imageBlob = await response.blob();
       const imageUrl = URL.createObjectURL(imageBlob); // Create an object URL from the blob
       console.log('Carter', imageUrl);
@@ -295,6 +295,7 @@ const styles = {
     maxHeight: '125px', // Set max height to limit the output area size
     overflowY: 'auto', // Enable scrolling for long content
     border: '1px solid #ccc', // Optional: Add a border for a clean look
+    width: '250px',
   },
   popupOverlay: {
     position: "fixed",
