@@ -1,7 +1,3 @@
-# Welcome to Blackjack!
+# Welcome to Python-Learning-App
 
-Here's a link to the rules:
-
-https://bicyclecards.com/how-to-play/blackjack
-
-The only feature that is not implemented is doubling down.
+This is an app which has gamified learning Python for a fun learning experience
