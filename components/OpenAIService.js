@@ -3,8 +3,8 @@ import { View, TextInput, Button, Text, ScrollView, StyleSheet } from 'react-nat
 import axios from 'axios';
 import Config from 'react-native-config';
 
-const apiKey = Config.API_KEY;
-console.log(apiKey);
+const apiKey = process.env.REACT_APP_API_KEY;
+
 
 
 const url = 'https://api.openai.com/v1/chat/completions';

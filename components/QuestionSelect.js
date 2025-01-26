@@ -94,27 +94,6 @@ const styles = StyleSheet.create({
   buttonStatusAttempted: {
     backgroundColor: "#ffd33d", // Yellow for attempted
   },
-  programmingContainer: {
-    flex: 1,
-    flexDirection: "row",
-    width: "90%",
-    marginTop: 30,
-    position: "relative", // Ensure the back button is positioned relative to this container
-  },
-  leftContainer: {
-    flex: 1,
-    padding: 20,
-    backgroundColor: "#ffffff",
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: "#e0e0e0", // Light border
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
-    marginRight: 20,
-  },
   questionHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -133,28 +112,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "500",
     color: "green"
-  },
-  rightContainer: {
-    flex: 2,
-    padding: 20,
-    backgroundColor: "#ffffff",
-    borderRadius: 8,
-    boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
-  },
-  backButton: {
-    position: 'absolute',
-    top: -20, // Move it above the container
-    right: 10, // Align to the right side
-    paddingVertical: 8,
-    paddingHorizontal: 15,
-    backgroundColor: '#6c757d',
-    borderRadius: 50,
-    zIndex: 10, // Ensure it's above other elements
-  },
-  backButtonText: {
-    color: "#ffffff",
-    fontWeight: "bold",
-    fontSize: 14, // Smaller text
   },
   scrollContainer: {
     maxHeight: 400, // Adjust as needed
