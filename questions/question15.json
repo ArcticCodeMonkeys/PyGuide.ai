@@ -1,8 +1,9 @@
 {
     "title": "Binary Search",
-    "description": "Write a Python function that implements binary search on a sorted list.\n",
-    "constraints": "Constraints: The list will contain integers, and the target will always be within the range of the list.\n",
+    "description": "Write a Python function that implements binary search on a sorted list. If it is not in the list return -1\n",
+    "constraints": "Constraints: The list will contain integers.\n",
     "examples": "Input: nums = [1, 2, 3, 4, 5], target = 3 \nOutput: 2",
-    "code": "class Solution:\n    def binarySearch(self, nums: list[int], target: int) -> int:\n        # your implementation here"
+    "code": "class Solution:\n\tdef binarySearch(self, nums: list[int], target: int) -> int:\n\t\t# your implementation here",
+    "test":"def passTest():\n\tsolution = Solution()\n\tparam = [[[1, 3, 5, 7, 9], 5], [[10, 20, 30, 40, 50], 10], [[2, 4, 6, 8, 10], 10], [[1, 3, 5, 7, 9], 5], [[], 5]]\n\tans = [2, 0, 4, -1, -1]\n\tfor i in range(5):\n\t\tif ans[i] == solution.binarySearch(param[i]):\n\t\t\tcontinue\n\t\telse\n\t\t\treturn False\n\treturn True\npassedTest = 'Passed all test cases' if passTest() else 'Test cases failed'\nprint(passedTest)" 
   }
   

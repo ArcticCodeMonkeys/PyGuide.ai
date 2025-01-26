@@ -3,6 +3,8 @@
     "description": "Write a Python function that sorts a given list in ascending order.\n",
     "constraints": "Constraints: The input list will contain integers.\n",
     "examples": "Input: [4, 2, 3, 1] \nOutput: [1, 2, 3, 4]",
-    "code": "class Solution:\n    def sortList(self, nums: list[int]) -> list[int]:\n        # your implementation here"
+    "code": "class Solution:\n\tdef sortList(self, nums: list[int]) -> list[int]:\n\t\t# your implementation here",
+    "test":"def passTest():\n\tsolution = Solution()\n\tparam = [[4, 2, 1, 4], [3, 2, 4, 1], [9999, 998, 20, 10], [1, 20, 10], [2000, 30, 40, 89]]\n\tans = [[1, 2, 4, 4], [1, 2, 3, 4], [10, 20, 998, 9999], [1, 10, 20], [30, 40, 89, 2000]]\n\tfor i in range(5):\n\t\tif ans[i] == solution.sortList(param[i]):\n\t\t\tcontinue\n\t\telse\n\t\t\treturn False\n\treturn True\npassedTest = 'Passed all test cases' if passTest() else 'Test cases failed'\nprint(passedTest)"
+
   }
   
