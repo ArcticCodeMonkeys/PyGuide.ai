@@ -1,7 +1,8 @@
 {
   "title": "Hello World",
-  "description": "Write a Python program that prints 'Hello, World!' to the console.\n",
+  "description": "Write a Python function that returns 'Hello, World!'.\n",
   "constraints": "Constraints: None.\n",
   "examples": "Output: 'Hello, World!'",
-  "code": "class Solution:\n    def helloWorld(self) -> str:\n        # your implementation here"
+  "code": "class Solution:\n\tdef helloWorld(self) -> str:\n\t\t# your implementation here",
+  "test": "def passTest():\n\tsolution = Solution()\n\tans = 'Hello, World!'\n\treturn ans == solution.helloWorld()\npassedTest = 'Passed all test cases' if passTest() else 'Test cases failed'\nprint(passedTest)"
 }
