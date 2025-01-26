@@ -17,12 +17,16 @@ const AllPages = () => {
     setCurrentPage(codePage); // Navigate to the IDE screen after a selection
   };
 
+  const handleBackToSelect = () => {
+    setCurrentPage(questionSelectScreen); // Go back to the question select screen
+  };
+
   const renderPage = () => {
     switch (currentPage) {
       case questionSelectScreen:
         return <QuestionSelect onSelect={handleSelectQuestion} question={question} />;
       case codePage:
-        return <HomePage question={question}/>
+        return <HomePage question={question} onBack={handleBackToSelect}/>
       default:
         return <Text>No page found</Text>;
     }

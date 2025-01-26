@@ -9,21 +9,28 @@ import { ScrollView } from 'react-native';
 
 
 // Main component for the game
-const HomePage = (question) => {
-  console.log(question);
-  return (
+const HomePage = ({question, onBack}) => {
+  const [questionData, setQuestionData] = useState(null);
+  const [codeContent, setCodeContent] = useState("# Write your Python code here");
+  const handleQuestionData = (data) => {
+    setQuestionData(data);  // Update state with the question data
+  }
+  const handleCodeContent = (code) => {
+    setCodeContent(code);  // Update state with the question data
+  };
 
+  return (
         <View style={styles.programmingContainer}>
-          <TouchableOpacity style={styles.backButton} onPress={null}>
+          <TouchableOpacity style={styles.backButton} onPress={onBack}>
             <Text style={styles.backButtonText}>Back</Text>
           </TouchableOpacity>
           <View style={styles.leftContainer}>
             {/* Display the Question component */}
-            <Question questionId={question.question} />
-            <FakeChatComponent/>
+            <Question questionId={question} onQuestionData={handleQuestionData}/>
+            <FakeChatComponent questionData={questionData} codeContent={codeContent}/>
           </View>
           <View style={styles.rightContainer}>
-            <IDE />
+            <IDE onCodeContent={handleCodeContent}/>
           </View>
         </View>
   );

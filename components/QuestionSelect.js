@@ -17,7 +17,7 @@ const SelectQuestion = ({ onSelect, question, maxQuestions = 15 }) => {
             onPress={() => onSelect(questionItem.id)} // Call onSelect to update 'question'
           >
             <Text style={styles.buttonText}>
-              {questionItem.title} {question === questionItem.id && "(Selected)"}
+              {questionItem.title}
             </Text>
           </TouchableOpacity>
         ))}

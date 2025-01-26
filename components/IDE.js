@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Editor } from "@monaco-editor/react";
 import axios from "axios";
 
-const IDE = () => {
+const IDE = ({onCodeContent}) => {
   // State variables
   const [code, setCode] = useState("# Write your Python code here");
   const [input, setInput] = useState("");
@@ -14,8 +14,6 @@ const IDE = () => {
   const handleRun = async () => {
     setLoading(true);
     setOutput(""); // Reset output
-
-    //
 
     try {
       // Send code to Judge0 API
@@ -77,7 +75,10 @@ const IDE = () => {
           height="100%" // Ensure the editor takes up full height of the container
           defaultLanguage="python"
           value={code}
-          onChange={(value) => setCode(value)}
+          onChange={(value) =>  {
+            setCode(value);
+            onCodeContent(value)
+          }}
           options={{
             minimap: {
               enabled: false, // Disable the minimap

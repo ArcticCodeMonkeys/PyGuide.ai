@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Text, View, StyleSheet, TouchableOpacity, Modal } from "react-native";
 
-const Question = ({ questionId }) => {
+const Question = ({ questionId, onQuestionData}) => {
   const [questionData, setQuestionData] = useState(null);
   const [tooltip, setTooltip] = useState({ visible: false, definition: "" });
   const [wordDefinitions, setWordDefinitions] = useState({}); // State for definitions
@@ -46,13 +46,12 @@ const Question = ({ questionId }) => {
 
     const fetchQuestion = async () => {
       try {
-        console.log('Carter', questionId);
         const url = `https://raw.githubusercontent.com/ArcticCodeMonkeys/python-app/main/questions/${questionId}.json`;
-        console.log(url);
         const response = await fetch(url);
         const data = await response.json();
         if (isMounted) {
           setQuestionData(data); // Only update if the component is still mounted
+          onQuestionData(data);
         }
       } catch (error) {
         console.error("Error fetching question:", error);
@@ -65,7 +64,7 @@ const Question = ({ questionId }) => {
     return () => {
       isMounted = false;
     };
-  }, [questionId]);  // Re-run effect when questionId changes
+  }, [questionId, onQuestionData]);  // Re-run effect when questionId changes
 
   // Function to handle word touches
   const handleWordPress = (word) => {
