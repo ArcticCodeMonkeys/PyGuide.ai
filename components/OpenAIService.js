@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, TextInput, Button, Text, ScrollView, StyleSheet } from 'react-native';
 import axios from 'axios';
 
-const apiKey = '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';
+const apiKey = "";
 const url = 'https://api.openai.com/v1/chat/completions';
 
 const ChatComponent = ({question, code}) => {
