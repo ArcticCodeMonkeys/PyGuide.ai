@@ -4,7 +4,7 @@
     "constraints": "Constraints: None.\n",
     "examples": "Input: 'apple' \nOutput: 'elppa'",
     "code": "class Solution:\n\tdef reverseString(self, s: str) -> str:\n\t\t# your implementation here",
-    "test":"def passTest():\n\tsolution = Solution()\n\tparam = ['a', 'apple', 'tomato', 'I love python', 'a1c1e1g']\n\tans = ['a', 'elppa', 'otamot', 'nohtyp evol I', 'g1e1c1a']\n\tfor i in range(5):\n\t\tif ans[i] == solution.reverseString(param[i]):\n\t\t\tcontinue\n\t\telse\n\t\t\treturn False\n\treturn True\npassedTest = 'Passed all test cases' if passTest() else 'Test cases failed'\nprint(passedTest)"
+    "test":"def passTest():\n\tsolution = Solution()\n\tparam = ['a', 'apple', 'tomato', 'I love python', 'a1c1e1g']\n\tans = ['a', 'elppa', 'otamot', 'nohtyp evol I', 'g1e1c1a']\n\tfor i in range(5):\n\t\tif ans[i] == solution.reverseString(param[i]):\n\t\t\tcontinue\n\t\telse:\n\t\t\treturn False\n\treturn True\npassedTest = 'Passed all test cases' if passTest() else 'Test cases failed'\nprint(passedTest)"
 
   }
   

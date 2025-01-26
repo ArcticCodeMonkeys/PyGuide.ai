@@ -4,6 +4,6 @@
     "constraints": "Constraints: The string will contain only alphabetic characters.\n",
     "examples": "Input: 'hello' \nOutput: 2",
     "code": "class Solution:\n\tdef countVowels(self, s: str) -> int:\n\t\t# your implementation here",
-    "test":"def passTest():\n\tsolution = Solution()\n\tparam = ['hello', 'bAnAnA', 'Python Expert', 'EEEEEE', 'OOO']\n\tans = [2, 3, 3, 6, 3]\n\tfor i in range(5):\n\t\tif ans[i] == solution.countVowels(param[i]):\n\t\t\tcontinue\n\t\telse\n\t\t\treturn False\n\treturn True\npassedTest = 'Passed all test cases' if passTest() else 'Test cases failed'\nprint(passedTest)"
+    "test":"def passTest():\n\tsolution = Solution()\n\tparam = ['hello', 'bAnAnA', 'Python Expert', 'EEEEEE', 'OOO']\n\tans = [2, 3, 3, 6, 3]\n\tfor i in range(5):\n\t\tif ans[i] == solution.countVowels(param[i]):\n\t\t\tcontinue\n\t\telse:\n\t\t\treturn False\n\treturn True\npassedTest = 'Passed all test cases' if passTest() else 'Test cases failed'\nprint(passedTest)"
   }
   

@@ -4,5 +4,5 @@
   "constraints": "Constraints: None.\n",
   "examples": "Input: 'Hello', 'World' \nOutput: 'HelloWorld'",
   "code": "class Solution:\n\tdef stringConcatenation(self, str1: str, str2: str) -> str:\n\t\t# your implementation here",
-  "test":"def passTest():\n\tsolution = Solution()\n\tparam = [['Hello', 'World'], ['I love ', 'candy'], ['abc', 'def'], ['jere', 'my'], ['I feel', ' very happy']]\n\tans = ['HelloWorld', 'I love candy', 'abcdef', 'jeremy', 'I feel very happy']\n\tfor i in range(5):\n\t\tif ans[i] == solution.stringConcatenation(param[i][0], param[i][1]):\n\t\t\tcontinue\n\t\telse\n\t\t\treturn False\n\treturn True\npassedTest = 'Passed all test cases' if passTest() else 'Test cases failed'\nprint(passedTest)"
+  "test":"def passTest():\n\tsolution = Solution()\n\tparam = [['Hello', 'World'], ['I love ', 'candy'], ['abc', 'def'], ['jere', 'my'], ['I feel', ' very happy']]\n\tans = ['HelloWorld', 'I love candy', 'abcdef', 'jeremy', 'I feel very happy']\n\tfor i in range(5):\n\t\tif ans[i] == solution.stringConcatenation(param[i][0], param[i][1]):\n\t\t\tcontinue\n\t\telse:\n\t\t\treturn False\n\treturn True\npassedTest = 'Passed all test cases' if passTest() else 'Test cases failed'\nprint(passedTest)"
 }

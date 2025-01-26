@@ -4,7 +4,7 @@
     "constraints": "Constraints: The list will have at least one element.\n",
     "examples": "Input: [3, 1, 4, 1, 5, 9] \nOutput: 1",
     "code": "from typing import List\nclass Solution:\n\tdef findMinimum(self, nums: List[int]) -> int:\n\t\t# your implementation here",
-    "test":"def passTest():\n\tsolution = Solution()\n\tparam = [[3, 1, 4, 1, 5, 9], [-10, 3, 3, 3, 2, -20], [123123, 2324, 54, 54960, 53469], [1, -1], [20, 20, 19, 20]]\n\tans = [1, -20, 54, -1, 19]\n\tfor i in range(5):\n\t\tif ans[i] == solution.findMinimum(param[i]):\n\t\t\tcontinue\n\t\telse\n\t\t\treturn False\n\treturn True\npassedTest = 'Passed all test cases' if passTest() else 'Test cases failed'\nprint(passedTest)"
+    "test":"def passTest():\n\tsolution = Solution()\n\tparam = [[3, 1, 4, 1, 5, 9], [-10, 3, 3, 3, 2, -20], [123123, 2324, 54, 54960, 53469], [1, -1], [20, 20, 19, 20]]\n\tans = [1, -20, 54, -1, 19]\n\tfor i in range(5):\n\t\tif ans[i] == solution.findMinimum(param[i]):\n\t\t\tcontinue\n\t\telse:\n\t\t\treturn False\n\treturn True\npassedTest = 'Passed all test cases' if passTest() else 'Test cases failed'\nprint(passedTest)"
 
   }
   

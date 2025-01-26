@@ -4,7 +4,7 @@
     "constraints": "Constraints: The input list will contain integers.\n",
     "examples": "Input: [1, 2, 3, 2, 4, 5, 3] \nOutput: [2, 3]",
     "code": "from typing import List\nclass Solution:\n\tdef findDuplicates(self, nums: List[int]) -> List[int]:\n\t\t# your implementation here",
-    "test":"def passTest():\n\tsolution = Solution()\n\tparam = [[1, 1, 2], [0, 3, 4, 2, 0, 2], [1, 1, 3, 4, 2, 1], [0, 0, 0], [1]]\n\tans = [[1], [0, 2], [1], [0], []]\n\tfor i in range(5):\n\t\tif ans[i] == solution.findDuplicates(param[i]):\n\t\t\tcontinue\n\t\telse\n\t\t\treturn False\n\treturn True\npassedTest = 'Passed all test cases' if passTest() else 'Test cases failed'\nprint(passedTest)"
+    "test":"def passTest():\n\tsolution = Solution()\n\tparam = [[1, 1, 2], [0, 3, 4, 2, 0, 2], [1, 1, 3, 4, 2, 1], [0, 0, 0], [1]]\n\tans = [[1], [0, 2], [1], [0], []]\n\tfor i in range(5):\n\t\tif ans[i] == solution.findDuplicates(param[i]):\n\t\t\tcontinue\n\t\telse:\n\t\t\treturn False\n\treturn True\npassedTest = 'Passed all test cases' if passTest() else 'Test cases failed'\nprint(passedTest)"
 
   }
   

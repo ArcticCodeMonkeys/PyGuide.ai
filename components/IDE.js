@@ -44,7 +44,7 @@ const IDE = ({onCodeContent, questionContent}) => {
         {
           headers: {
             "Content-Type": "application/json",
-            "X-RapidAPI-Key": "5c9ccf5690msh845045ae2754aa2p1bf8d9jsn5865582cc2df",
+            "X-RapidAPI-Key": "15cc6bc58fmshc56c3f53fd6b998p1236d6jsn363bc0653340",
             "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
           },
         }
@@ -60,7 +60,7 @@ const IDE = ({onCodeContent, questionContent}) => {
           `https://judge0-ce.p.rapidapi.com/submissions/${token}?base64_encoded=false`,
           {
             headers: {
-              "X-RapidAPI-Key": "5c9ccf5690msh845045ae2754aa2p1bf8d9jsn5865582cc2df",
+              "X-RapidAPI-Key": "15cc6bc58fmshc56c3f53fd6b998p1236d6jsn363bc0653340",
               "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
             },
           }
