@@ -2,6 +2,9 @@ import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import IDE from "@/components/IDE";
 import Question from "@/components/Question";
+import OpenAIApp from "@/components/OpenAIService";
+import ChatComponent from "@/components/OpenAIService";
+import FakeChatComponent from "@/components/FakeChatComponent";
 
 // Main component for the game
 const HomePage = () => {
@@ -12,7 +15,8 @@ const HomePage = () => {
       <View style={styles.programmingContainer}>
       <View style={styles.leftContainer}>
         {/* Display the Question component */}
-        <Question questionId={question} />
+        {/*<Question questionId={question} />*/}
+        <FakeChatComponent/>
       </View>
 
       <View style={styles.rightContainer}>

@@ -1,29 +1,80 @@
+import React, { useState } from 'react';
+import { View, TextInput, Button, Text, ScrollView, StyleSheet } from 'react-native';
 import axios from 'axios';
-require('dotenv').config();
 
-const API_KEY = process.env.API_KEY;
-const API_URL = 'https://api.openai.com/v1/chat/completions';
+const apiKey = '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';
+const url = 'https://api.openai.com/v1/chat/completions';
 
-export const generateResponse = async (messages) => {
-    try {
-        const response = await axios.post(
-        API_URL,
-        {
-            model: 'gpt-4',
-            messages: messages,
-            max_tokens: 150,
-            temperature: 0.7
-        },
-        {
+const ChatComponent = () => {
+    const [userInput, setUserInput] = useState('');
+    const [response, setResponse] = useState('');
+
+    const handleSendMessage = async () => {
+        const data = {
+            model: 'gpt-3.5-turbo',
+            messages: [
+                { role: 'system', content: 'You are a helpful assistant.' },
+                { role: 'user', content: userInput }
+            ],
+            max_tokens: 200
+        };
+
+        const config = {
             headers: {
-                'Authorization': `Bearer ${API_KEY}`,
                 'Content-Type': 'application/json',
-            },
+                'Authorization': `Bearer ${apiKey}`
+            }
+        };
+
+        try {
+            const result = await axios.post(url, data, config);
+            const messageContent = result.data.choices[0].message.content;
+            setResponse(messageContent);
+        } catch (error) {
+            console.error('Error making API request:', error);
+            setResponse('Error occurred while fetching the response.');
         }
-      );
-      return response.data.choices[0].message.content; 
-    } catch (error) {
-        console.error('Error communicating with OpenAI API:', error);
-        throw error;
+    };
+
+    return (
+      <View style={styles.container}>
+          <TextInput
+            style={styles.input}
+            placeholder="Type a message..."
+            value={userInput}
+            onChangeText={setUserInput}
+          />
+          <Button title="Send" onPress={handleSendMessage} />
+          <ScrollView style={styles.responseContainer}>
+              <Text>{response}</Text>
+          </ScrollView>
+      </View>
+    );
+};
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        padding: 16,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    input: {
+        width: '100%',
+        height: 40,
+        borderColor: 'gray',
+        borderWidth: 1,
+        marginBottom: 16,
+        paddingLeft: 8,
+    },
+    responseContainer: {
+        marginTop: 16,
+        width: '100%',
+        height: 200,
+        borderColor: 'gray',
+        borderWidth: 1,
+        padding: 8,
     }
-  };
+});
+
+export default ChatComponent;
