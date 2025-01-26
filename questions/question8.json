@@ -1,7 +1,7 @@
 {
     "title": "Sum of Digits",
-    "description": "Write a Python function that calculates the sum of the digits of a given number.",
-    "constraints": "The input will be a non-negative integer.",
+    "description": "Write a Python function that calculates the sum of the digits of a given number.\n",
+    "constraints": "Constraints: The input will be a non-negative integer.\n",
     "examples": "Input: 123 \nOutput: 6",
     "code": "class Solution:\n    def sumOfDigits(self, n: int) -> int:\n        # your implementation here"
   }

@@ -1,7 +1,7 @@
 {
     "title": "Reverse a String",
-    "description": "Write a Python function that reverses a string.",
-    "constraints": "None.",
+    "description": "Write a Python function that reverses a string.\n",
+    "constraints": "Constraints: None.\n",
     "examples": "Input: 'hello' \nOutput: 'olleh'",
     "code": "class Solution:\n    def reverseString(self, s: str) -> str:\n        # your implementation here"
   }

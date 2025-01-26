@@ -4,12 +4,12 @@ import IDE from "@/components/IDE";
 import Question from "@/components/Question";
 import { ScrollView } from 'react-native';
 
-const SelectQuestion = ({ onSelect, maxQuestions = 20 }) => {
+const SelectQuestion = ({ onSelect, maxQuestions = 15 }) => {
   const questions = generateQuestions(maxQuestions);
 
   return (
     <View style={styles.selectContainer}>
-      <Text style={styles.selectTitle}>Select a Question</Text>
+      <Text style={styles.selectTitle}>Start Your Python Journey...</Text>
       <ScrollView 
         style={styles.scrollContainer}
         contentContainerStyle={styles.buttonContainer}

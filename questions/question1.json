@@ -1,7 +1,7 @@
 {
   "title": "Hello World",
-  "description": "Write a Python program that prints 'Hello, World!' to the console.",
-  "constraints": "None.",
+  "description": "Write a Python program that prints 'Hello, World!' to the console.\n",
+  "constraints": "Constraints: None.\n",
   "examples": "Output: 'Hello, World!'",
   "code": "class Solution:\n    def helloWorld(self) -> str:\n        # your implementation here"
 }

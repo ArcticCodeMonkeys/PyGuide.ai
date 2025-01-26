@@ -1,7 +1,7 @@
 {
   "title": "String Concatenation",
-  "description": "Write a Python function that concatenates two strings and returns the result.",
-  "constraints": "None.",
+  "description": "Write a Python function that concatenates two strings and returns the result.\n",
+  "constraints": "Constraints: None.\n",
   "examples": "Input: 'Hello', 'World' \nOutput: 'HelloWorld'",
   "code": "class Solution:\n    def stringConcatenation(self) -> str:\n        # your implementation here"
 }

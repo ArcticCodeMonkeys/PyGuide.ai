@@ -1,7 +1,7 @@
 {
   "title": "Simple Addition",
-  "description": "Create a Python function that adds two numbers, and returns the result.",
-  "constraints": "None.",
+  "description": "Create a Python function that adds two numbers, and returns the result.\n",
+  "constraints": "Constraints: None.\n",
   "examples": "Input: 5, 3. \nOutput: 8",
   "code": "class Solution:\n    def simpleAddition(self) -> int:\n        # your implementation here"
 }
