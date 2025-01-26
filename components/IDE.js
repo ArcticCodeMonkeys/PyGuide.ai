@@ -33,10 +33,11 @@ const IDE = ({onCodeContent, questionContent}) => {
 
     try {
       // Send code to Judge0 API
+      qCTest = questionContent.test
       const submissionResponse = await axios.post(
         "https://judge0-ce.p.rapidapi.com/submissions?base64_encoded=false",
         {
-          source_code: code,
+          source_code: code+"\n"+qCTest,
           language_id: languageId,
           stdin: input,
         },
