@@ -21,7 +21,7 @@ const IDE = ({onCodeContent, questionContent}) => {
     if (isInitialRender.current) {
       isInitialRender.current = false;
     } else if (questionContent.code !== code) {
-      setCode(questionContent.code || "");
+      setCode("from typing import List\n"+questionContent.code || "");
     }
   }, [questionContent.code]);
 
