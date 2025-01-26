@@ -103,7 +103,8 @@ const Question = ({ questionId }) => {
     <View style={styles.container}>
       <Text style={styles.title}>{questionData.title}</Text>
       <Text style={styles.description}>{formatDescription(questionData.description)}</Text>
-
+      <Text style={styles.description}>{formatDescription(questionData.examples)}</Text>
+      <Text style={styles.description}>{formatDescription(questionData.constraints)}</Text>
       {/* Tooltip Modal */}
       <Modal
         visible={tooltip.visible}

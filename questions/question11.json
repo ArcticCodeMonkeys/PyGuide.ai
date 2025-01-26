@@ -1,0 +1,8 @@
+{
+    "title": "Fibonacci Sequence",
+    "description": "Write a Python function that returns the n-th number in the Fibonacci sequence.\n",
+    "constraints": "Constraints: The input will be a non-negative integer.\n",
+    "examples": "Input: 5 \nOutput: 5",
+    "code": "class Solution:\n    def fibonacci(self, n: int) -> int:\n        # your implementation here"
+  }
+  

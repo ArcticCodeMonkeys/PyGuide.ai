@@ -1,0 +1,8 @@
+{
+    "title": "Find Minimum in List",
+    "description": "Write a Python function that returns the smallest number in a list.\n",
+    "constraints": "Constraints: The list will have at least one element.\n",
+    "examples": "Input: [3, 1, 4, 1, 5, 9] \nOutput: 1",
+    "code": "class Solution:\n    def findMinimum(self, nums: list[int]) -> int:\n        # your implementation here"
+  }
+  

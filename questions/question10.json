@@ -1,0 +1,8 @@
+{
+    "title": "Sort List",
+    "description": "Write a Python function that sorts a given list in ascending order.\n",
+    "constraints": "Constraints: The input list will contain integers.\n",
+    "examples": "Input: [4, 2, 3, 1] \nOutput: [1, 2, 3, 4]",
+    "code": "class Solution:\n    def sortList(self, nums: list[int]) -> list[int]:\n        # your implementation here"
+  }
+  

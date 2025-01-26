@@ -1,0 +1,8 @@
+{
+    "title": "Binary Search",
+    "description": "Write a Python function that implements binary search on a sorted list.\n",
+    "constraints": "Constraints: The list will contain integers, and the target will always be within the range of the list.\n",
+    "examples": "Input: nums = [1, 2, 3, 4, 5], target = 3 \nOutput: 2",
+    "code": "class Solution:\n    def binarySearch(self, nums: list[int], target: int) -> int:\n        # your implementation here"
+  }
+  

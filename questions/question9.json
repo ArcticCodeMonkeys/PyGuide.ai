@@ -1,0 +1,8 @@
+{
+    "title": "Find Duplicates",
+    "description": "Write a Python function that returns a list of duplicate elements from a given list.\n",
+    "constraints": "Constraints: The input list will contain integers.\n",
+    "examples": "Input: [1, 2, 3, 2, 4, 5, 3] \nOutput: [2, 3]",
+    "code": "class Solution:\n    def findDuplicates(self, nums: list[int]) -> list[int]:\n        # your implementation here"
+  }
+  

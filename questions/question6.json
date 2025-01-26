@@ -1,0 +1,8 @@
+{
+    "title": "Check Prime",
+    "description": "Write a Python function that checks whether a given number is prime.\n",
+    "constraints": "Constraints: The input will be a positive integer.\n",
+    "examples": "Input: 7 \nOutput: True",
+    "code": "class Solution:\n    def isPrime(self, n: int) -> bool:\n        # your implementation here"
+  }
+  
