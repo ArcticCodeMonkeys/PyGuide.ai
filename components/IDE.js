@@ -1,12 +1,13 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, { useState, useEffect} from "react";
 import { Editor } from "@monaco-editor/react";
 import axios from "axios";
-import { Menu, User, Star, SquareArrowUp, LoaderCircle, CircleArrowRight, Circle} from "lucide-react";
+import {User, Star, SquareArrowUp, LoaderCircle, CircleArrowRight, Circle} from "lucide-react";
+import gooseImage from '../assets/PyGuides/goose-image.jpg';
 
-const IDE = ({onCodeContent, questionContent}) => {
+
+const IDE = ({onCodeContent}) => {
   // State variables
-
-  const [code, setCode] = useState("");
+  const [code, setCode] = useState("# Write your Python code here");
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [languageId, setLanguageId] = useState(71); // Python 3 language ID
@@ -14,17 +15,24 @@ const IDE = ({onCodeContent, questionContent}) => {
   const [showPopup, setShowPopup] = useState(false); // State for showing popup
   const [levelUp, setLevelUp] = useState(true); // New state for level-up popup
   const [showSecondPopup, setShowSecondPopup] = useState(false);
-  const isInitialRender = useRef(true); // Ref to track initial render
+  const [gooseImage, setGooseImage] = useState(null);
 
-  useEffect(() => {
-    // Only update the code state on the first render or if explicitly required
-    if (isInitialRender.current) {
-      isInitialRender.current = false;
-    } else if (questionContent.code !== code) {
-      setCode(questionContent.code || "");
+  const fetchImages = async () => {
+    try {
+      const response = await fetch('https://raw.githubusercontent.com/ArcticCodeMonkeys/python-app/main/assets/PyGuides/goose-image-removebg-preview.png');
+      const imageBlob = await response.blob();
+      const imageUrl = URL.createObjectURL(imageBlob); // Create an object URL from the blob
+      console.log('Carter', imageUrl);
+      setGooseImage(imageUrl); // Save the image URL in the state
+    } catch (error) {
+      console.error("Error fetching image:", error);
     }
-  }, [questionContent.code]);
-
+  };
+  
+  useEffect(() => {
+    fetchImages(); // Call this function to load the image when the component mounts
+  }, []);
+  
 
   // Handle code execution
   const handleRun = async () => {
@@ -89,9 +97,8 @@ const IDE = ({onCodeContent, questionContent}) => {
       {/* Header */}
       <div style={styles.header}>
       <button style={styles.iconButton}>
-      <Menu size={24} />
         </button>
-        <h1 style={styles.title}>PyGuide.ai</h1>
+        <h1 style={styles.title}>Python App</h1>
         <div style={{ position: "relative" }}>
         <button style={styles.iconButton} onClick={() => {setShowPopup(true)}}>
         <User size={24} />
@@ -117,7 +124,7 @@ const IDE = ({onCodeContent, questionContent}) => {
               <span style={styles.levelText}>Level 10</span> {/* Add the level text here */}
               </div>
             </div>
-            <button style={styles.closeButton} onClick={() => {setShowPopup(false); setShowSecondPopup(true)}}>
+            <button style={styles.closeButton} onClick={() => {setShowPopup(false)}}>
               Close
             </button>
           </div>
@@ -143,10 +150,35 @@ const IDE = ({onCodeContent, questionContent}) => {
             size={40} // Set the size of the icon
             color="#4CAF50" // Choose the color of the icon
             style={styles.levelUpCloseIcon} // Apply styling for the icon
-            onClick={() => setLevelUp(false)} // Close popup on click
+            onClick={() => {
+              setLevelUp(false); // Close the level-up popup
+              setShowSecondPopup(true); // Open the second popup
+            }}
           />
         </div>
       )}
+
+      {/* Second Popup */}
+      {showSecondPopup && (
+  <div style={styles.levelUpPopup}>
+    <div style={styles.levelUpContent}>
+      <h2 style={styles.SecondPopupText}>New PyGuide Unlocked!</h2>
+      
+      {/* Render the goose image if it's available */}
+      {gooseImage && <img src={gooseImage} alt="Goose" style={styles.gooseImage} />}
+    </div>
+    <CircleArrowRight
+      size={40}
+      color="#4CAF50"
+      style={styles.levelUpCloseIcon}
+      onClick={() => {
+        setShowSecondPopup(false);
+      }}
+    />
+  </div>
+)}
+
+  
 
       {/* IDE section taking up 2/3 of the screen */}
       <div style={styles.ideContainer}>
@@ -164,6 +196,7 @@ const IDE = ({onCodeContent, questionContent}) => {
             },
           }}
         />
+{/*Might need a div here*/}
 
       {/* Input/output section for user input and results */}
       <div style={styles.inputOutputContainer}>
@@ -189,6 +222,12 @@ const IDE = ({onCodeContent, questionContent}) => {
 };
 
 const styles = {
+  gooseImage: {
+    width: "100%", // Make it responsive or set a specific width
+    height: "auto", // Maintain aspect ratio
+    marginTop: "20px", // Add some space above the image
+  },
+  
   page: {
     display: 'flex', // Use flexbox for layout
     justifyContent: 'flex-start',
@@ -257,18 +296,23 @@ const styles = {
     maxHeight: '125px', // Set max height to limit the output area size
     overflowY: 'auto', // Enable scrolling for long content
     border: '1px solid #ccc', // Optional: Add a border for a clean look
+    width: '250px',
   },
   popupOverlay: {
     position: "fixed",
+    top: 50,
+    left: 0,
+    /*
     marginTop: "50px",
     marginRight: "0px",
     marginLeft: "0px",
+    */
     width: "100%",
     height: "100%",
     backgroundColor: "rgba(0, 0, 0, 0.5)",
-    //display: "flex",
-    //alignItems: "flex-start",
-    //justifyContent: "flex-end",
+    display: "flex",
+    alignItems: "flex-start",
+    justifyContent: "flex-end",
     zIndex: 2000,
   },
   popup: {
@@ -368,6 +412,13 @@ const styles = {
     textAlign: "center",
   },
 
+  SecondPopupText: {
+    fontSize: "50px",
+    fontWeight: "bold",
+    color: "#000000",
+    textAlign: "center",
+  },
+
   levelUpCircleIcon: {
     marginBottom: "20px", // Add some space between the circle icon and the close button
   },
@@ -422,6 +473,12 @@ const styles = {
     color: "transparent",
     background: "linear-gradient(45deg, #ffe666, #ff5500)",  // Yellow gradient effect
     WebkitBackgroundClip: "text",  // Clip the background to the text
+  },
+
+  gooseImage: {
+    width: "200px", // Set a suitable width for the image
+    height: "auto", // Maintain aspect ratio
+    marginTop: "20px", // Add some space above the image
   },
 
 

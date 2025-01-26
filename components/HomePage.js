@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
   backButton: {
     position: 'absolute',
     top: -20, // Move it above the container
-    right: 10, // Align to the right side
+    left: -50, // Align to the right side
     paddingVertical: 8,
     paddingHorizontal: 15,
     backgroundColor: '#6c757d',
