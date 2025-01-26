@@ -1,12 +1,13 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, { useState } from "react";
 import { Editor } from "@monaco-editor/react";
 import axios from "axios";
-import { Menu, User, Star, SquareArrowUp, LoaderCircle, CircleArrowRight, Circle} from "lucide-react";
+import {User, Star, SquareArrowUp, LoaderCircle, CircleArrowRight, Circle} from "lucide-react";
+import gooseImage from '../assets/PyGuides/goose-image.jpg';
 
-const IDE = ({onCodeContent, questionContent}) => {
+
+const IDE = ({onCodeContent}) => {
   // State variables
-
-  const [code, setCode] = useState("");
+  const [code, setCode] = useState("# Write your Python code here");
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [languageId, setLanguageId] = useState(71); // Python 3 language ID
@@ -14,16 +15,6 @@ const IDE = ({onCodeContent, questionContent}) => {
   const [showPopup, setShowPopup] = useState(false); // State for showing popup
   const [levelUp, setLevelUp] = useState(true); // New state for level-up popup
   const [showSecondPopup, setShowSecondPopup] = useState(false);
-  const isInitialRender = useRef(true); // Ref to track initial render
-
-  useEffect(() => {
-    // Only update the code state on the first render or if explicitly required
-    if (isInitialRender.current) {
-      isInitialRender.current = false;
-    } else if (questionContent.code !== code) {
-      setCode(questionContent.code || "");
-    }
-  }, [questionContent.code]);
 
 
   // Handle code execution
@@ -88,9 +79,8 @@ const IDE = ({onCodeContent, questionContent}) => {
       {/* Header */}
       <div style={styles.header}>
       <button style={styles.iconButton}>
-      <Menu size={24} />
         </button>
-        <h1 style={styles.title}>PyGuide.ai</h1>
+        <h1 style={styles.title}>Python App</h1>
         <div style={{ position: "relative" }}>
         <button style={styles.iconButton} onClick={() => {setShowPopup(true)}}>
         <User size={24} />
@@ -116,7 +106,7 @@ const IDE = ({onCodeContent, questionContent}) => {
               <span style={styles.levelText}>Level 10</span> {/* Add the level text here */}
               </div>
             </div>
-            <button style={styles.closeButton} onClick={() => {setShowPopup(false); setShowSecondPopup(true)}}>
+            <button style={styles.closeButton} onClick={() => {setShowPopup(false)}}>
               Close
             </button>
           </div>
@@ -142,9 +132,31 @@ const IDE = ({onCodeContent, questionContent}) => {
             size={40} // Set the size of the icon
             color="#4CAF50" // Choose the color of the icon
             style={styles.levelUpCloseIcon} // Apply styling for the icon
-            onClick={() => setLevelUp(false)} // Close popup on click
+            onClick={() => {
+              setLevelUp(false); // Close the level-up popup
+              setShowSecondPopup(true); // Open the second popup
+            }}
           />
         </div>
+      )}
+
+      {/* Second Popup */}
+      {showSecondPopup && (
+                  <div style={styles.levelUpPopup}>
+                  <div style={styles.levelUpContent}>
+                    <h2 style={styles.SecondPopupText}> New PyGuide Unlocked!</h2>
+                    
+                    <img src="../assets/PyGuides/goose-image.png" alt="Custom Image" />
+                    </div>
+                    <CircleArrowRight
+            size={40} // Set the size of the icon
+            color="#4CAF50" // Choose the color of the icon
+            style={styles.levelUpCloseIcon} // Apply styling for the icon
+            onClick={() => {
+              setShowSecondPopup(false); // Open the second popup
+            }}
+          />
+          </div>
       )}
 
       {/* IDE section taking up 2/3 of the screen */}
@@ -163,6 +175,7 @@ const IDE = ({onCodeContent, questionContent}) => {
             },
           }}
         />
+{/*Might need a div here*/}
 
       {/* Input/output section for user input and results */}
       <div style={styles.inputOutputContainer}>
@@ -259,15 +272,19 @@ const styles = {
   },
   popupOverlay: {
     position: "fixed",
+    top: 50,
+    left: 0,
+    /*
     marginTop: "50px",
     marginRight: "0px",
     marginLeft: "0px",
+    */
     width: "100%",
     height: "100%",
     backgroundColor: "rgba(0, 0, 0, 0.5)",
-    //display: "flex",
-    //alignItems: "flex-start",
-    //justifyContent: "flex-end",
+    display: "flex",
+    alignItems: "flex-start",
+    justifyContent: "flex-end",
     zIndex: 2000,
   },
   popup: {
@@ -367,6 +384,13 @@ const styles = {
     textAlign: "center",
   },
 
+  SecondPopupText: {
+    fontSize: "50px",
+    fontWeight: "bold",
+    color: "#000000",
+    textAlign: "center",
+  },
+
   levelUpCircleIcon: {
     marginBottom: "20px", // Add some space between the circle icon and the close button
   },
@@ -421,6 +445,12 @@ const styles = {
     color: "transparent",
     background: "linear-gradient(45deg, #ffe666, #ff5500)",  // Yellow gradient effect
     WebkitBackgroundClip: "text",  // Clip the background to the text
+  },
+
+  gooseImage: {
+    width: "200px", // Set a suitable width for the image
+    height: "auto", // Maintain aspect ratio
+    marginTop: "20px", // Add some space above the image
   },
 
 
