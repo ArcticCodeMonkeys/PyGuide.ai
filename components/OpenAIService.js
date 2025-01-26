@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { View, TextInput, Button, Text, ScrollView, StyleSheet } from 'react-native';
 import axios from 'axios';
 
-const apiKey = '';
+const apiKey = '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';
 const url = 'https://api.openai.com/v1/chat/completions';
 
-const ChatComponent = () => {
+const ChatComponent = ({question, code}) => {
     const [userInput, setUserInput] = useState('');
     const [response, setResponse] = useState('');
 
@@ -13,10 +13,12 @@ const ChatComponent = () => {
         const data = {
             model: 'gpt-3.5-turbo',
             messages: [
-                { role: 'system', content: 'You are a helpful assistant.' },
-                { role: 'user', content: userInput }
+                { role: 'system', content: 'You are an AI teacher for Python coding. Your goal is to guide the user with simple, clear, and concise explanations. Avoid complex jargon and never give the final answer, only provide hints and guidance to help the user solve the problem themselves.' },
+
+        { role: 'user', content: `Here is the question: ${question.description} \n\nHere is my code: ${code} \n\n${userInput}`
+        }
             ],
-            max_tokens: 200
+            max_tokens: 500
         };
 
         const config = {

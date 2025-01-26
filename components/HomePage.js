@@ -27,7 +27,7 @@ const HomePage = ({question, onBack}) => {
           <View style={styles.leftContainer}>
             {/* Display the Question component */}
             <Question questionId={question} onQuestionData={handleQuestionData}/>
-            <FakeChatComponent questionData={questionData} codeContent={codeContent}/>
+            <ChatComponent question={questionData} code={codeContent}/>
           </View>
           <View style={styles.rightContainer}>
             <IDE onCodeContent={handleCodeContent}/>
@@ -65,11 +65,6 @@ const styles = StyleSheet.create({
     flexDirection: "column  ",
     flexWrap: "wrap", // Allows buttons to wrap based on screen size
     justifyContent: "center",
-    gap: 10,
-  },
-  buttonContainer: {
-    width: "100%",
-    flexDirection: "column",
     gap: 10,
   },
   button: {

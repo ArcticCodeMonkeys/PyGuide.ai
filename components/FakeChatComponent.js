@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, TextInput, Button, Text, ScrollView, StyleSheet } from 'react-native';
 import TextWithFormatting from "@/app/Files/helpers/ChatFormater";
 
-const FakeChatComponent = ({questionData, codeContent}) => {
+const FakeChatComponent = ({question, code}) => {
   const [userInput, setUserInput] = useState('');
   const [response, setResponse] = useState('');
 
@@ -46,7 +46,7 @@ In this example:
       />
       <Button title="Send" onPress={handleSend} />
       <ScrollView style={styles.responseContainer}>
-        <TextWithFormatting text={codeContent || ''} />
+        <TextWithFormatting text={question.description + "\n" + code || ''} />
       </ScrollView>
     </View>
   );
