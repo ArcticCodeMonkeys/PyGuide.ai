@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, Text, ScrollView, StyleSheet } from 'react-native';
 import axios from 'axios';
+import Config from 'react-native-config';
 
-const apiKey = "";
+const apiKey = Config.API_KEY;
+console.log(apiKey);
+
+
 const url = 'https://api.openai.com/v1/chat/completions';
 
 const ChatComponent = ({question, code}) => {
