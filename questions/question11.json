@@ -3,7 +3,7 @@
     "description": "Write a Python function that returns the n-th number in the Fibonacci sequence.\n",
     "constraints": "Constraints: The input will be a non-negative integer.\n",
     "examples": "Input: 5 \nOutput: 5",
-    "code": "class Solution:\n\tdef fibonacci(self, n: int) -> int:\n\t\t# your implementation here",
+    "code": "class Solution:\n\tdef fibonacci(self, n: int) -> int:\n\t\t# your implementation here\n",
     "test":"def passTest():\n\tsolution = Solution()\n\tparam = [0, 1, 4, 10, 35]\n\tans = [0, 1, 3, 55, 9227465]\n\tfor i in range(5):\n\t\tif ans[i] == solution.fibonacci(param[i]):\n\t\t\tcontinue\n\t\telse:\n\t\t\treturn False\n\treturn True\npassedTest = 'Passed all test cases' if passTest() else 'Test cases failed'\nprint(passedTest)" 
   }
   

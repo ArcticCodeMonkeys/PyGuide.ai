@@ -3,7 +3,7 @@
     "description": "Write a Python function that checks whether two strings are anagrams of each other.\n",
     "constraints": "Constraints: The strings will contain only alphabetic characters.\n",
     "examples": "Input: 'listen', 'silent' \nOutput: True",
-    "code": "class Solution:\n\tdef isAnagram(self, s1: str, s2: str) -> bool:\n\t\t# your implementation here",
+    "code": "class Solution:\n\tdef isAnagram(self, s1: str, s2: str) -> bool:\n\t\t# your implementation here\n",
     "test":"def passTest():\n\tsolution = Solution()\n\tparam = [[silent, listen], [hello, world], ['the eyes', 'they see'], ['abc', 'abcd'], ['Listen', 'Silent']]\n\tans = [True, False, True, False, True]\n\tfor i in range(5):\n\t\tif ans[i] == solution.isAnagram(param[i][0], param[i][1]):\n\t\t\tcontinue\n\t\telse:\n\t\t\treturn False\n\treturn True\npassedTest = 'Passed all test cases' if passTest() else 'Test cases failed'\nprint(passedTest)" 
   }
   
