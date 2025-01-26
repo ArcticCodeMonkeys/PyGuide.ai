@@ -5,7 +5,7 @@ import Config from 'react-native-config';
 
 const apiKey = process.env.REACT_APP_API_KEY;
 
-
+console.log(apiKey);
 
 const url = 'https://api.openai.com/v1/chat/completions';
 

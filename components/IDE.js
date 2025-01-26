@@ -1,13 +1,13 @@
-import React, { useState, useEffect} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import { Editor } from "@monaco-editor/react";
 import axios from "axios";
 import {User, Star, SquareArrowUp, LoaderCircle, CircleArrowRight, Circle} from "lucide-react";
 import gooseImage from '../assets/PyGuides/goose-image.jpg';
 
 
-const IDE = ({onCodeContent}) => {
+const IDE = ({onCodeContent, questionContent}) => {
   // State variables
-  const [code, setCode] = useState("# Write your Python code here");
+  const [code, setCode] = useState("");
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [languageId, setLanguageId] = useState(71); // Python 3 language ID
@@ -16,6 +16,16 @@ const IDE = ({onCodeContent}) => {
   const [levelUp, setLevelUp] = useState(true); // New state for level-up popup
   const [showSecondPopup, setShowSecondPopup] = useState(false);
   const [gooseImage, setGooseImage] = useState(null);
+  const isInitialRender = useRef(true); // Ref to track initial render
+  useEffect(() => {
+    // Only update the code state on the first render or if explicitly required
+    if (isInitialRender.current) {
+      isInitialRender.current = false;
+    } else if (questionContent.code !== code) {
+      setCode(questionContent.code || "");
+    }
+  }, [questionContent.code]);
+
 
   const fetchImages = async () => {
     try {
@@ -41,6 +51,7 @@ const IDE = ({onCodeContent}) => {
 
     try {
       // Send code to Judge0 API
+      console.log('qctest', questionContent.test)
       qCTest = questionContent.test
       const submissionResponse = await axios.post(
         "https://judge0-ce.p.rapidapi.com/submissions?base64_encoded=false",

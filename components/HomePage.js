@@ -26,7 +26,7 @@ const HomePage = ({question, onBack}) => {
             <ChatComponent question={questionData} code={codeContent}/>
           </View>
           <View style={styles.rightContainer}>
-            <IDE onCodeContent={handleCodeContent} questionContent={questionData || ''}/>
+          <IDE onCodeContent={handleCodeContent} questionContent={questionData || ''}/>
           </View>
         </View>
   );
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
   backButton: {
     position: 'absolute',
     top: -20, // Move it above the container
-    left: -50, // Align to the right side
+    right: 10, // Align to the right side
     paddingVertical: 8,
     paddingHorizontal: 15,
     backgroundColor: '#6c757d',
