@@ -1,8 +1,8 @@
 {
-    "title": "Even or Odd",
-    "description": "Write a function that checks if the number is even or odd and returns the result.",
-    "constraints": "None.",
-    "examples": "Output: 'Even'",
-    "code": "class Solution:\n    def evenOrOdd(self) -> str:\n       # your implementation here"
+    "title": "Find Minimum in List",
+    "description": "Write a Python function that returns the smallest number in a list.",
+    "constraints": "The list will have at least one element.",
+    "examples": "Input: [3, 1, 4, 1, 5, 9] \nOutput: 1",
+    "code": "class Solution:\n    def findMinimum(self, nums: list[int]) -> int:\n        # your implementation here"
   }
   

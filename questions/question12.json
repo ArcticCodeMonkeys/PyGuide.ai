@@ -1,0 +1,8 @@
+{
+    "title": "Find Missing Number",
+    "description": "Write a Python function that finds the missing number in a list of consecutive integers.",
+    "constraints": "The list will contain integers with one missing number.",
+    "examples": "Input: [1, 2, 4, 5] \nOutput: 3",
+    "code": "class Solution:\n    def findMissingNumber(self, nums: list[int]) -> int:\n        # your implementation here"
+  }
+  

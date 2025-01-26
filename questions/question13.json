@@ -1,0 +1,8 @@
+{
+    "title": "Check Anagram",
+    "description": "Write a Python function that checks whether two strings are anagrams of each other.",
+    "constraints": "The strings will contain only alphabetic characters.",
+    "examples": "Input: 'listen', 'silent' \nOutput: True",
+    "code": "class Solution:\n    def isAnagram(self, s1: str, s2: str) -> bool:\n        # your implementation here"
+  }
+  

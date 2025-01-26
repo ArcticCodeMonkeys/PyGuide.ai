@@ -2,25 +2,38 @@ import { useState } from "react";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import IDE from "@/components/IDE";
 import Question from "@/components/Question";
+import { ScrollView } from 'react-native';
 
-// SelectQuestion component for selecting a question
-const SelectQuestion = ({ onSelect }) => {
+const SelectQuestion = ({ onSelect, maxQuestions = 20 }) => {
+  const questions = generateQuestions(maxQuestions);
+
   return (
     <View style={styles.selectContainer}>
       <Text style={styles.selectTitle}>Select a Question</Text>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={() => onSelect("question1")}>
-          <Text style={styles.buttonText}>Question 1</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => onSelect("question2")}>
-          <Text style={styles.buttonText}>Question 2</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => onSelect("question3")}>
-          <Text style={styles.buttonText}>Question 3</Text>
-        </TouchableOpacity>
-      </View>
+      <ScrollView 
+        style={styles.scrollContainer}
+        contentContainerStyle={styles.buttonContainer}
+      >
+        {questions.map((question) => (
+          <TouchableOpacity 
+            key={question.id} 
+            style={styles.button} 
+            onPress={() => onSelect(question.id)}
+          >
+            <Text style={styles.buttonText}>{question.title}</Text>
+          </TouchableOpacity>
+        ))}
+      </ScrollView>
     </View>
   );
+};
+
+// SelectQuestion component for selecting a question
+const generateQuestions = (maxQuestions) => {
+  return Array.from({ length: maxQuestions }, (_, index) => ({
+    id: `question${index + 1}`,
+    title: `Question ${index + 1}`,
+  }));
 };
 
 // Main component for the game
@@ -186,4 +199,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 14, // Smaller text
   },
+  scrollContainer: {
+    maxHeight: 400, // Adjust as needed
+    width: '100%',
+  }
 });
