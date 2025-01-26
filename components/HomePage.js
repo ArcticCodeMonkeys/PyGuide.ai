@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import IDE from "@/components/IDE";
 import Question from "@/components/Question";
@@ -8,6 +8,8 @@ import ChatComponent from "@/components/OpenAIService";
 const HomePage = ({question, onBack}) => {
   const [questionData, setQuestionData] = useState(null);
   const [codeContent, setCodeContent] = useState("# Write your Python code here");
+
+
   const handleQuestionData = (data) => {
     setQuestionData(data);  // Update state with the question data
   }
@@ -26,7 +28,7 @@ const HomePage = ({question, onBack}) => {
             <ChatComponent question={questionData} code={codeContent}/>
           </View>
           <View style={styles.rightContainer}>
-          <IDE onCodeContent={handleCodeContent} questionContent={questionData || ''}/>
+          <IDE onCodeContent={handleCodeContent} questionContent={questionData || ''} />
           </View>
         </View>
   );
@@ -72,7 +74,7 @@ const styles = StyleSheet.create({
   backButton: {
     position: 'absolute',
     top: -20, // Move it above the container
-    right: 10, // Align to the right side
+    left: -70, // Align to the right side
     paddingVertical: 8,
     paddingHorizontal: 15,
     backgroundColor: '#6c757d',

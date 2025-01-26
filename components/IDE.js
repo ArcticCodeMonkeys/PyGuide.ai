@@ -1,8 +1,7 @@
 import React, {useEffect, useRef, useState} from "react";
 import { Editor } from "@monaco-editor/react";
 import axios from "axios";
-import {User, Star, SquareArrowUp, LoaderCircle, CircleArrowRight, Circle} from "lucide-react";
-import gooseImage from '../assets/PyGuides/goose-image.jpg';
+import {User, Star, SquareArrowUp, LoaderCircle, CircleArrowRight, Circle, Bot} from "lucide-react";
 
 
 const IDE = ({onCodeContent, questionContent}) => {
@@ -13,10 +12,38 @@ const IDE = ({onCodeContent, questionContent}) => {
   const [languageId, setLanguageId] = useState(71); // Python 3 language ID
   const [loading, setLoading] = useState(false);
   const [showPopup, setShowPopup] = useState(false); // State for showing popup
-  const [levelUp, setLevelUp] = useState(true); // New state for level-up popup
+  const [levelUp, setLevelUp] = useState(false); // New state for level-up popup
   const [showSecondPopup, setShowSecondPopup] = useState(false);
   const [gooseImage, setGooseImage] = useState(null);
+  const [playerLevel, setPlayerLevel] = useState('');
   const isInitialRender = useRef(true); // Ref to track initial render
+  const [showGoose, setShowGoose] = useState(false);
+
+
+    const [userPoints, setUserPoints] = useState(250);
+    const [requiredPoints, setRequiredPoints] = useState(500);
+    const [userLevel, setUserLevel] = useState(3);
+    useEffect(() => {
+      console.log("Current output:", output); // Debug log
+      if (output.trim().includes("Passed all test cases")) {
+        console.log("Detected 'All test cases passed'!");
+        setUserPoints((prevPoints) => {
+          const newPoints = prevPoints + 250;
+          console.log(`Points updated: ${newPoints}`);
+          return newPoints;
+        });
+      }
+    }, [output]);
+    
+    useEffect(() => {
+      if (userPoints >= requiredPoints) {
+        setUserLevel((prevLevel) => prevLevel + 1);
+        setUserPoints((prevPoints) => prevPoints - requiredPoints); // Carry over excess points
+        setRequiredPoints((prevRequired) => prevRequired * 2);
+        setLevelUp(true); // Trigger level-up popup
+      }
+    }, [userPoints]);
+    
   useEffect(() => {
     // Only update the code state on the first render or if explicitly required
     if (isInitialRender.current) {
@@ -26,6 +53,21 @@ const IDE = ({onCodeContent, questionContent}) => {
     }
   }, [questionContent.code]);
 
+
+  useEffect(() => {
+    // Only update the code state on the first render or if explicitly required
+    setPlayerLevel('Mr. Goose: Level ' + userLevel);
+  }, [userLevel]);
+
+  const difficulty = (title) => {
+    const num = (parseInt(title.split(" ")[1], 10));
+    return (
+      num >= 1 && num <= 5 ? 100 : 
+      num >= 6 && num <= 10 ? 250 : 
+      num >= 11 && num <= 15 ? 500 : 0
+    )
+  }
+  
 
   const fetchImages = async () => {
     try {
@@ -63,7 +105,7 @@ const IDE = ({onCodeContent, questionContent}) => {
         {
           headers: {
             "Content-Type": "application/json",
-            "X-RapidAPI-Key": "15cc6bc58fmshc56c3f53fd6b998p1236d6jsn363bc0653340",
+            "X-RapidAPI-Key": "9d88264b43msh1893e6b375afcdcp124779jsn0367ce250999",
             "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
           },
         }
@@ -79,7 +121,7 @@ const IDE = ({onCodeContent, questionContent}) => {
           `https://judge0-ce.p.rapidapi.com/submissions/${token}?base64_encoded=false`,
           {
             headers: {
-              "X-RapidAPI-Key": "15cc6bc58fmshc56c3f53fd6b998p1236d6jsn363bc0653340",
+              "X-RapidAPI-Key": "9d88264b43msh1893e6b375afcdcp124779jsn0367ce250999",
               "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
             },
           }
@@ -121,18 +163,18 @@ const IDE = ({onCodeContent, questionContent}) => {
       {showPopup && (
         <div style={styles.popupOverlay} onClick={() => setShowPopup(false)}>
           <div style={styles.popup} onClick={(e) => e.stopPropagation()}>
-            <h2 style={styles.popupTitle}>Jeremy: Lvl 10000</h2>
+            <h2 style={styles.popupTitle}>{playerLevel}</h2>
             <ul style={styles.popupList}>
               <li style={styles.listItem}>
-              <Star size={16} color="#FFD700" style={{ marginRight: "8px" }} />Yoda Best Achievement: Complete Tutorial <SquareArrowUp size={16} color="#4CAF50" style={{ marginLeft: "auto" }} /> 10</li>
+              <Star size={16} color="#FFD700" style={{ marginRight: "8px" }} />Solve an Easy Question<SquareArrowUp size={16} color="#1c64ff" style={{ marginLeft: "auto" }} />100</li>
               <li style={styles.listItem}>
-              <Star size={16} color="#FFD700" style={{ marginRight: "8px" }} />Defeat Mr. Goose: Solve Mr. Goose's Question <SquareArrowUp size={16} color="#4CAF50" style={{ marginLeft: "auto" }} /> 20</li>
+              <Star size={16} color="#FFD700" style={{ marginRight: "8px" }} />Solve a Medium Question<SquareArrowUp size={16} color="#1c64ff" style={{ marginLeft: "auto" }} />250</li>
               <li style={styles.listItem}>
-              <Star size={16} color="#FFD700" style={{ marginRight: "8px" }} />Never Gonna Give Up: Complete a Task Without Hints <SquareArrowUp size={16} color="#4CAF50" style={{ marginLeft: "auto" }} /> 30</li>
-            </ul>
+              <Star size={16} color="#FFD700" style={{ marginRight: "8px" }} />Solve a Hard Question<SquareArrowUp size={16} color="#1c64ff" style={{ marginLeft: "auto" }} />500</li>
+              </ul>
             <div style={styles.loaderContainer}>
-              <LoaderCircle size={130} color="#4CAF50" />
-              <span style={styles.levelText}>Level 10</span> {/* Add the level text here */}
+              <LoaderCircle size={130} color="#3131ff" />
+              <span style={styles.levelText}>{userPoints + "/" + requiredPoints}</span> {/* Add the level text here */}
               </div>
             </div>
             <button style={styles.closeButton} onClick={() => {setShowPopup(false)}}>
@@ -151,15 +193,15 @@ const IDE = ({onCodeContent, questionContent}) => {
               <div style={styles.circleContainer}>
               <Circle
                 size={250} // Set the size of the circle
-                color="#4CAF50" // Choose the color of the circle
+                color="#3131ff" // Choose the color of the circle
                 style={styles.levelUpCircleIcon} // Apply styling for the circle icon
               />
-            <span style={styles.levelText2}>Level 5</span> {/* Add text inside the circle */}
+            <span style={styles.levelText2}>{"Level " + userLevel}</span> {/* Add text inside the circle */}
           </div>
         </div>
           <CircleArrowRight
             size={40} // Set the size of the icon
-            color="#4CAF50" // Choose the color of the icon
+            color="#0055ff" // Choose the color of the icon
             style={styles.levelUpCloseIcon} // Apply styling for the icon
             onClick={() => {
               setLevelUp(false); // Close the level-up popup
@@ -177,18 +219,40 @@ const IDE = ({onCodeContent, questionContent}) => {
       
       {/* Render the goose image if it's available */}
       {gooseImage && <img src={gooseImage} alt="Goose" style={styles.gooseImage} />}
+      <h2 style={styles.SecondPopupText}>Professor Goose</h2>
     </div>
     <CircleArrowRight
       size={40}
-      color="#4CAF50"
+      color="#0055ff"
       style={styles.levelUpCloseIcon}
       onClick={() => {
         setShowSecondPopup(false);
+        setShowGoose(true);
       }}
     />
   </div>
 )}
 
+
+      {showGoose && gooseImage && (
+        <img src={gooseImage} alt="Goose" style={styles.gooseImage2} />
+      )}
+
+{!showGoose && (
+  <div style={{ position: "relative", zIndex: 999 }}>
+      <Bot 
+        size={50} // Adjust the size of the icon as needed
+        style={{
+          position: "absolute",     // Make the icon absolutely positioned
+          top: "320px",               // Center vertically
+          right: "400px",              // Center horizontally
+          width: "100px",           // Set width
+          height: "auto",           // Maintain aspect ratio
+          zIndex: 1001,
+        }} 
+      />
+  </div>
+)}
   
 
       {/* IDE section taking up 2/3 of the screen */}
@@ -201,10 +265,13 @@ const IDE = ({onCodeContent, questionContent}) => {
             setCode(value);
             onCodeContent(value)
           }}
+          
           options={{
             minimap: {
               enabled: false, // Disable the minimap
             },
+            insertSpaces: false,
+            inlineSuggest: true
           }}
         />
 {/*Might need a div here*/}
@@ -256,7 +323,7 @@ const styles = {
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
-    backgroundColor: "#c8f9c3", // Light purple background
+    background: "linear-gradient(45deg,rgb(182, 231, 255),rgb(146, 131, 255))", // Gradient from light blue to dark blue
     padding: "10px 20px",
     borderBottom: "1px solid #ccc",
     zIndex: 1000,
@@ -292,7 +359,7 @@ const styles = {
   runButton: {
     padding: '10px',
     fontSize: '16px',
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#4b4be1',
     color: 'white',
     border: 'none',
     borderRadius: '4px',
@@ -357,7 +424,7 @@ const styles = {
   },
 
   closeButton: {
-    backgroundColor: "#4CAF50",
+    backgroundColor: "#0055ff",
     color: "white",
     border: "none",
     borderRadius: "4px",
@@ -367,6 +434,7 @@ const styles = {
     position: "absolute",
     right: "270px",
     top: "390px",
+    zIndex: 1001,
   },
 
   listItem: {
@@ -488,6 +556,16 @@ const styles = {
 
   gooseImage: {
     width: "200px", // Set a suitable width for the image
+    height: "auto", // Maintain aspect ratio
+    marginTop: "20px", // Add some space above the image
+  },
+
+  gooseImage2: {
+    position: 'absolute',
+    top: '55%',
+    left: '-55%', // Center-left
+    transform: 'translateY(-50%)', // Center vertically
+    width: "100px", // Set a suitable width for the image
     height: "auto", // Maintain aspect ratio
     marginTop: "20px", // Add some space above the image
   },

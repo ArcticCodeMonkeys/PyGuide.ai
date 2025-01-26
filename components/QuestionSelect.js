@@ -2,7 +2,14 @@ import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-nati
 
 const SelectQuestion = ({ onSelect, question, maxQuestions = 15 }) => {
   const questions = generateQuestions(maxQuestions);
-
+  const difficulty = (title) => {
+    const num = (parseInt(title.split(" ")[1], 10));
+    return (
+      num >= 1 && num <= 5 ? 'Easy' : 
+      num >= 6 && num <= 10 ? 'Medium' : 
+      num >= 11 && num <= 15 ? 'Hard' : 'Invalid'
+    )
+  }
   return (
     <View style={styles.selectContainer}>
       <Text style={styles.selectTitle}>Start Your Python Journey...</Text>
@@ -19,6 +26,18 @@ const SelectQuestion = ({ onSelect, question, maxQuestions = 15 }) => {
             <Text style={styles.buttonText}>
               {questionItem.title}
             </Text>
+            <Text
+      style={[
+        styles.buttonText,
+        difficulty(questionItem.title) === "Easy"
+          ? styles.easyGreen
+          : difficulty(questionItem.title) === "Medium"
+          ? styles.mediumYellow
+          : styles.hardRed,
+      ]}
+    >
+      {difficulty(questionItem.title)}
+    </Text>
           </TouchableOpacity>
         ))}
       </ScrollView>
@@ -43,6 +62,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#f8f9fa", // Light background color
+  },
+  easyGreen: {
+    color: "green",
+  },
+  mediumYellow: {
+    color: "orange",
+  },
+  hardRed: {
+    color: "red",
   },
   selectContainer: {
     width: "80%",
@@ -107,11 +135,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "600",
     color: "#1a73e8",
-  },
-  questionDifficulty: {
-    fontSize: 14,
-    fontWeight: "500",
-    color: "green"
   },
   scrollContainer: {
     maxHeight: 400, // Adjust as needed

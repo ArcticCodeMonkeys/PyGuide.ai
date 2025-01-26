@@ -5,6 +5,7 @@ import Config from 'react-native-config';
 
 const apiKey = process.env.REACT_APP_API_KEY;
 
+console.log(apiKey);
 
 const url = 'https://api.openai.com/v1/chat/completions';
 
@@ -21,7 +22,7 @@ const ChatComponent = ({question, code}) => {
         { role: 'user', content: `Here is the question: ${question.description} \n\nHere is my code: ${code} \n\n${userInput}`
         }
             ],
-            max_tokens: 500
+            max_tokens: 1000
         };
 
         const config = {
