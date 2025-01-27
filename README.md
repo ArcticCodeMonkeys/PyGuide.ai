@@ -1,6 +1,7 @@
 # PyGuide.ai
 
 PyGuide.ai is an innovative Python learning platform that combines AI-powered assistance and gamification to make coding education interactive, engaging, and effective. Designed for learners of all levels, PyGuide.ai offers:
+
 	•	AI-Powered Assistance: An AI tutor that analyzes your code, provides contextual hints, and guides you step-by-step through	challenges.
 	•	Interactive Challenges: Questions of varying difficulty to test and improve your skills.
 	•	Definitions & Explanations: Clear, concise definitions for programming concepts like arrays, variables, and loops.
