@@ -94,19 +94,19 @@ const IDE = ({onCodeContent, questionContent}) => {
     try {
       // Send code to Judge0 API
       console.log('qctest', questionContent.test)
-      qCTest = questionContent.test
+      const qCTest = questionContent.test
       const submissionResponse = await axios.post(
-        "https://judge0-ce.p.rapidapi.com/submissions?base64_encoded=false",
+        `https://judge0-ce.p.rapidapi.com/submissions?base64_encoded=false`,
         {
-          source_code: code+"\n"+qCTest,
+          source_code: code + "\n" + qCTest,
           language_id: languageId,
           stdin: input,
         },
         {
           headers: {
             "Content-Type": "application/json",
-            "X-RapidAPI-Key": "9d88264b43msh1893e6b375afcdcp124779jsn0367ce250999",
-            "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
+            "X-RapidAPI-Key": process.env.REACT_APP_RAPIDAPI_KEY,
+            "X-RapidAPI-Host": process.env.REACT_APP_JUDGE0_HOST,
           },
         }
       );
